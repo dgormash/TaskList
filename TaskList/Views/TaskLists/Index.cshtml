@@ -1,0 +1,39 @@
+﻿@using TaskList.Models
+@model TaskList.Models.CheckList
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+</head>
+<body>
+<h1>I am view Index</h1>
+<div id="checks">
+    @*@Ajax.ActionLink("Загрузить информацию из partial view", "CheckLists", new AjaxOptions {UpdateTargetId = "checks", InsertionMode = InsertionMode.InsertAfter})*@
+</div>
+<div id="list_create">
+    @using (Ajax.BeginForm("CreateCheckList", "TaskLists",
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "POST",
+            UpdateTargetId = "checks"
+        }))
+    {
+        @Html.EditorFor(model => model.ListName)
+    }
+</div>
+<div id="tasks"></div>
+
+</body>
+@Scripts.Render("~/scripts/jquery-1.10.2.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+@Scripts.Render("~/CustomScripts/BuildTable.js")
+</html>
+
+

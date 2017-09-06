@@ -1,0 +1,32 @@
+﻿@using TaskList.Models
+@model IEnumerable<Task>
+
+<table>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td style="font-family: arial, verdana">
+                    @item.TaskDescription
+                </td>
+                <td>
+                    @item.ChekListId
+                </td>
+            </tr>
+        }
+    }
+</table>
+<div id="task_create">
+    @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "POST",
+                            UpdateTargetId = "tasks"
+                        }
+                        /*,new { listId = Model.CheckListId }*/))
+    {
+        var taskModel = new Task();
+        @Html.EditorFor(m => taskModel.TaskDescription)
+    }
+</div>

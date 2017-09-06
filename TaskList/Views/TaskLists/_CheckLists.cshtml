@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TaskList.Models.CheckList>
+
+<table>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td style="font-family: arial, verdana">
+                    @Ajax.ActionLink(@item.ListName, "GetTasksFromCheckList", new {id = @item.CheckListId},
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "tasks",
+                            HttpMethod = "GET",
+                            InsertionMode = InsertionMode.Replace
+                        })
+                </td>
+            </tr>
+        }
+    }
+</table>
