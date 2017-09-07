@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using TaskList.DataBaseManipulations;
 using TaskList.Models;
 
@@ -55,10 +51,18 @@ namespace TaskList.Controllers
         //    return RedirectToAction("GetTasksFromCheckList", new {id = task.ChekListId});
         //}
 
+        //[HttpPost]
+        //public ActionResult CreateNewTask(string taskDescription, int checkListId)
+        //{
+        //   CreateTask(taskDescription, checkListId);
+        //    return RedirectToAction("GetTasksFromCheckList", new { id = checkListId });
+        //    //return null;
+        //}
+        //todo Разобраться, как передавать два параметра в action
         [HttpPost]
         public ActionResult CreateNewTask(string taskDescription)
         {
-           CreateTask(taskDescription, 0);
+            CreateTask(taskDescription,0);
             return RedirectToAction("GetTasksFromCheckList", new { id = 0 });
             //return null;
         }

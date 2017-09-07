@@ -27,27 +27,26 @@
         @Html.EditorFor(model => model.ListName)
     }
 </div>
-@{
-    var t = new TaskList.Models.Task();
-    <div id="task_create">
-        @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
-            new AjaxOptions
-            {
-                InsertionMode = InsertionMode.Replace,
-                HttpMethod = "POST",
-                UpdateTargetId = "tasks"
-            }))
-        {
-            @*@Html.HiddenFor(m => Model.ChekListId)*@
-            @Html.Editor("taskDescritption")
-        }
-    </div>
-}
+
    
 
 <div id="tasks">
 </div>
 
+    <div id="task_create">
+            @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
+                    new AjaxOptions
+                    {
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "POST",
+                        UpdateTargetId = "tasks"
+                    }))
+            {
+                @Html.Editor("taskDescription")
+                @Html.Hidden("checkListId")
+            }
+
+        </div>
 </body>
 @Scripts.Render("~/scripts/jquery-1.10.2.js")
 @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")

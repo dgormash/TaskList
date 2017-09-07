@@ -14,19 +14,17 @@
     }
 </table>
 
-@*<div id="task_create">
-    @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
-        new AjaxOptions
+    @*<div id="task_create">
+        @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
+                new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                    UpdateTargetId = "tasks"
+                }))
         {
-            InsertionMode = InsertionMode.Replace,
-            HttpMethod = "POST",
-            UpdateTargetId = "tasks"
-        }))
-    {
-
-        @Html.EditorFor(m=> Model.ElementAt(0).TaskDescription)
-    }
-</div>*@
-
-@*@Html.Partial("_NewTask", Model.ElementAt(0))*@
+            @Html.Editor("taskDescription")
+            @Html.Hidden("checkListId")
+        }
+    </div>*@
 
