@@ -13,7 +13,7 @@ namespace TaskList.DataBaseManipulations
         
         private string _commandText;
         private SqlCommand _sqlCommand;
-        const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Roland\Desktop\test\NewTaskList\TaskList\TaskList\App_Data\TaskListDataBase.mdf;Integrated Security = True";
+        private const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\TaskListDataBase.mdf;Integrated Security = True";
        
         private static SqlConnection GetConnection()
         {
@@ -92,7 +92,7 @@ namespace TaskList.DataBaseManipulations
             using (var cn = GetConnection())
             {
                 _commandText = @"insert into Tasks (Task, CompleteStatus, EntryDate, IsStoped, CheckListId)"+ 
-                    "values (@Task, @CompleteStatus, @EntryDate, @IsStoped, @ChekListId)";
+                    "values (@Task, @CompleteStatus, @EntryDate, @IsStoped, @CheckListId)";
                 _sqlCommand = new SqlCommand(_commandText, cn);
                 _sqlCommand.Parameters.Add("@Task", SqlDbType.NChar);
                 _sqlCommand.Parameters.Add("@CompleteStatus", SqlDbType.Bit);
@@ -103,7 +103,7 @@ namespace TaskList.DataBaseManipulations
                 _sqlCommand.Parameters["@CompleteStatus"].Value = false;
                 _sqlCommand.Parameters["@EntryDate"].Value = DateTime.Now;
                 _sqlCommand.Parameters["@IsStoped"].Value = false;
-                _sqlCommand.Parameters["@CheckLisId"].Value = taskItem.ChekListId;
+                _sqlCommand.Parameters["@CheckListId"].Value = taskItem.ChekListId;
                 _sqlCommand.ExecuteNonQuery();
             }
         }

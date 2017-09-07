@@ -17,7 +17,6 @@ namespace TaskList.Controllers
         {
             
             _dBaseManager = new DBaseManager();
-            var hash = _dBaseManager.GetHashCode();
         }
 
         // GET: TaskLists
@@ -49,11 +48,25 @@ namespace TaskList.Controllers
             return PartialView("_TaskList", _dBaseManager.GetTaskList(id));
         }
 
-        public ActionResult CreateNewTask(string description, int id)
+        //[HttpPost]
+        //public ActionResult CreateNewTask(Task task)
+        //{
+        //    _dBaseManager.CreateNewTask(task);
+        //    return RedirectToAction("GetTasksFromCheckList", new {id = task.ChekListId});
+        //}
+
+        [HttpPost]
+        public ActionResult CreateNewTask(string taskDescription)
         {
-            CreateTask(description, id);
-            return PartialView("_TaskList", _dBaseManager.GetTaskList(id));
+           CreateTask(taskDescription, 0);
+            return RedirectToAction("GetTasksFromCheckList", new { id = 0 });
+            //return null;
         }
+
+        //public ActionResult NewTask()
+        //{
+        //    return PartialView("_NewTask",)
+        //}
 
         private void CreateTask(string description, int id)
         {

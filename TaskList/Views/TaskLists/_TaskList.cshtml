@@ -9,24 +9,24 @@
                 <td style="font-family: arial, verdana">
                     @item.TaskDescription
                 </td>
-                <td>
-                    @item.ChekListId
-                </td>
             </tr>
         }
     }
 </table>
-<div id="task_create">
+
+@*<div id="task_create">
     @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
-                        new AjaxOptions
-                        {
-                            InsertionMode = InsertionMode.Replace,
-                            HttpMethod = "POST",
-                            UpdateTargetId = "tasks"
-                        }
-                        /*,new { listId = Model.CheckListId }*/))
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "POST",
+            UpdateTargetId = "tasks"
+        }))
     {
-        var taskModel = new Task();
-        @Html.EditorFor(m => taskModel.TaskDescription)
+
+        @Html.EditorFor(m=> Model.ElementAt(0).TaskDescription)
     }
-</div>
+</div>*@
+
+@*@Html.Partial("_NewTask", Model.ElementAt(0))*@
+

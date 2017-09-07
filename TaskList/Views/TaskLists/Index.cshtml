@@ -1,5 +1,4 @@
-﻿@using TaskList.Models
-@model TaskList.Models.CheckList
+﻿@model TaskList.Models.CheckList
 @{
     Layout = null;
 }
@@ -28,7 +27,26 @@
         @Html.EditorFor(model => model.ListName)
     }
 </div>
-<div id="tasks"></div>
+@{
+    var t = new TaskList.Models.Task();
+    <div id="task_create">
+        @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                UpdateTargetId = "tasks"
+            }))
+        {
+            @*@Html.HiddenFor(m => Model.ChekListId)*@
+            @Html.Editor("taskDescritption")
+        }
+    </div>
+}
+   
+
+<div id="tasks">
+</div>
 
 </body>
 @Scripts.Render("~/scripts/jquery-1.10.2.js")
