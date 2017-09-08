@@ -105,5 +105,17 @@ namespace TaskList.DataBaseManipulations
                 _sqlCommand.ExecuteNonQuery();
             }
         }
+
+        public void CompleteTask(int id)
+        {
+            using (var cn = GetConnection())
+            {
+                _commandText = @"update tasks set CompleteStatus = true where id = @id";
+                _sqlCommand = new SqlCommand(_commandText, cn);
+                _sqlCommand.Parameters.Add("@id", SqlDbType.Bit);
+                _sqlCommand.Parameters["@id"].Value = id;
+                _sqlCommand.ExecuteNonQuery();
+            }
+        }
     }
 }

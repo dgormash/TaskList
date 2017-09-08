@@ -56,5 +56,12 @@ namespace TaskList.Controllers
         {
             _dBaseManager.CreateNewTask(task);
         }
+
+        public ActionResult FinishTask(int? id)
+        {
+            //task.CompleteStatus = true;
+            //_dBaseManager.CompleteTask(task);
+            return RedirectToAction("GetTasksFromCheckList", id);
+        }
     }
 }

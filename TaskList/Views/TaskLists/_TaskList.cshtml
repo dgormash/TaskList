@@ -9,6 +9,9 @@
                 <td style="font-family: arial, verdana">
                     @item.TaskDescription
                 </td>
+                <td>
+                    @Html.CheckBoxFor(modelItem=>@item.CompleteStatus, new {id = @item.TaskId})
+                </td>
             </tr>
         }
     }
