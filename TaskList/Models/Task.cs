@@ -12,6 +12,6 @@ namespace TaskList.Models
         public bool CompleteStatus { get;  set; }
         public bool IsStoped { get;  set; }
         public DateTime EntryDate { get;  set; }
-        public int ChekListId { get;  set; }
+        public int CheckListId { get;  set; }
     }
 }

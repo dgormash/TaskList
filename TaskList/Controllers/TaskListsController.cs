@@ -41,44 +41,19 @@ namespace TaskList.Controllers
         [HttpGet]
         public ActionResult GetTasksFromCheckList(int id)
         {
+            ViewBag.CheckListId = id;
             return PartialView("_TaskList", _dBaseManager.GetTaskList(id));
         }
 
-        //[HttpPost]
-        //public ActionResult CreateNewTask(Task task)
-        //{
-        //    _dBaseManager.CreateNewTask(task);
-        //    return RedirectToAction("GetTasksFromCheckList", new {id = task.ChekListId});
-        //}
-
-        //[HttpPost]
-        //public ActionResult CreateNewTask(string taskDescription, int checkListId)
-        //{
-        //   CreateTask(taskDescription, checkListId);
-        //    return RedirectToAction("GetTasksFromCheckList", new { id = checkListId });
-        //    //return null;
-        //}
-        //todo Разобраться, как передавать два параметра в action
         [HttpPost]
-        public ActionResult CreateNewTask(string taskDescription)
+        public ActionResult CreateNewTask(Task task)
         {
-            CreateTask(taskDescription,0);
-            return RedirectToAction("GetTasksFromCheckList", new { id = 0 });
-            //return null;
+            CreateTask(task);
+            return RedirectToAction("GetTasksFromCheckList", new { id = task.CheckListId });
         }
 
-        //public ActionResult NewTask()
-        //{
-        //    return PartialView("_NewTask",)
-        //}
-
-        private void CreateTask(string description, int id)
+        private void CreateTask(Task task)
         {
-            var task = new Task
-            {
-                TaskDescription = description,
-                ChekListId = id
-            };
             _dBaseManager.CreateNewTask(task);
         }
     }

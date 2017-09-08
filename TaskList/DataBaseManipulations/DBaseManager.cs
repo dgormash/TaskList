@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using TaskList.Models;
 
 namespace TaskList.DataBaseManipulations
@@ -40,7 +38,7 @@ namespace TaskList.DataBaseManipulations
                         TaskDescription = sqlReader["Task"].ToString(),
                         CompleteStatus = (bool)sqlReader["CompleteStatus"],
                         EntryDate = (DateTime)sqlReader["EntryDate"],
-                        ChekListId = (int)sqlReader["CheckListId"],
+                        CheckListId = (int)sqlReader["CheckListId"],
                         IsStoped = (bool)sqlReader["IsStoped"]
                     };
 
@@ -103,7 +101,7 @@ namespace TaskList.DataBaseManipulations
                 _sqlCommand.Parameters["@CompleteStatus"].Value = false;
                 _sqlCommand.Parameters["@EntryDate"].Value = DateTime.Now;
                 _sqlCommand.Parameters["@IsStoped"].Value = false;
-                _sqlCommand.Parameters["@CheckListId"].Value = taskItem.ChekListId;
+                _sqlCommand.Parameters["@CheckListId"].Value = taskItem.CheckListId;
                 _sqlCommand.ExecuteNonQuery();
             }
         }

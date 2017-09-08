@@ -14,7 +14,7 @@
     }
 </table>
 
-    @*<div id="task_create">
+    <div id="task_create">
         @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
                 new AjaxOptions
                 {
@@ -24,7 +24,8 @@
                 }))
         {
             @Html.Editor("taskDescription")
-            @Html.Hidden("checkListId")
+            //var checkListId = !Model.Any() ? 0 : Model.ElementAt(0).CheckListId;
+            @Html.Hidden("checkListId", (object)@ViewBag.CheckListId)
         }
-    </div>*@
+    </div>
 

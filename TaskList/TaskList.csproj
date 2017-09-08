@@ -178,7 +178,6 @@
     <Content Include="Views\TaskLists\_CheckLists.cshtml" />
     <Content Include="Views\TaskLists\Index.cshtml" />
     <Content Include="Views\TaskLists\_TaskList.cshtml" />
-    <Content Include="Views\TaskLists\_NewTask.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
