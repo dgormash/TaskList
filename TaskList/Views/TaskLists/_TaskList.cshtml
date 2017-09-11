@@ -10,25 +10,26 @@
                     @item.TaskDescription
                 </td>
                 <td>
-                    @Html.CheckBoxFor(modelItem=>@item.CompleteStatus, new {id = @item.TaskId})
+                    @Html.CheckBoxFor(modelItem=>@item.CompleteStatus, new {id = @item.TaskId, @class="ActiveCheck"})
                 </td>
             </tr>
         }
     }
 </table>
 
-    <div id="task_create">
-        @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
-                new AjaxOptions
-                {
-                    InsertionMode = InsertionMode.Replace,
-                    HttpMethod = "POST",
-                    UpdateTargetId = "tasks"
-                }))
+<div id="task_create">
+    @using (Ajax.BeginForm("CreateNewTask", "TaskLists",
+        new AjaxOptions
         {
-            @Html.Editor("taskDescription")
-            //var checkListId = !Model.Any() ? 0 : Model.ElementAt(0).CheckListId;
-            @Html.Hidden("checkListId", (object)@ViewBag.CheckListId)
-        }
-    </div>
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "POST",
+            UpdateTargetId = "tasks"
+        }))
+    {
+        @Html.Editor("taskDescription")
+        //var checkListId = !Model.Any() ? 0 : Model.ElementAt(0).CheckListId;
+        @Html.Hidden("checkListId", (object) @ViewBag.CheckListId, new {@class="ListId"})
+    }
+</div>
+<script src="~/CustomScripts/TaskStatusChangener.js"></script>
 
