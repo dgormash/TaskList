@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*Stylin for task list items*/
+.CompletedTask {
+    text-decoration: line-through;
+    color: lightgray;
+    font-style: oblique;
+}

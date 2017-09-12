@@ -57,13 +57,12 @@ namespace TaskList.Controllers
             _dBaseManager.CreateNewTask(task);
         }
         [HttpPost]
-        public ActionResult ChangeTaskCompleteStatus(int id, bool value)
+        public ActionResult ChangeTaskCompleteStatus(int id, bool value, int listId)
         {
             //task.CompleteStatus = true;
             //_dBaseManager.CompleteTask(task);
-            var idValue = id;
-            _dBaseManager.ChangeCompleteStatus(idValue, value);
-            return RedirectToAction("GetTasksFromCheckList", new {id = idValue});
+            _dBaseManager.ChangeCompleteStatus(id, value);
+            return RedirectToAction("GetTasksFromCheckList", new {id = listId});
         }
     }
 }

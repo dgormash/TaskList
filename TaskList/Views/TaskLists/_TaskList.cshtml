@@ -7,7 +7,14 @@
         {
             <tr>
                 <td style="font-family: arial, verdana">
-                    @item.TaskDescription
+                    @if (!item.CompleteStatus)
+                    {
+                        @item.TaskDescription
+                    }
+                    else
+                    {
+                        <div class="CompletedTask">@item.TaskDescription</div>
+                    }
                 </td>
                 <td>
                     @Html.CheckBoxFor(modelItem=>@item.CompleteStatus, new {id = @item.TaskId, @class="ActiveCheck"})
